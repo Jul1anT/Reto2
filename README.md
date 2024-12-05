@@ -2,7 +2,7 @@
 
 Se creo un sistema que modela elementos geométricos básicos, como puntos, líneas y rectángulos. Permitiendo generar líneas entre puntos, calcular la longitud de las líneas, la pendiente, y los cruces con los ejes horizontal y vertical. También permite crear un rectángulo utilizando dos líneas y visualizar sus coordenadas.
 
-### Desarrollo
+## Desarrollo
 
 1. **Clase `Point`**: Representa un punto en el plano cartesiano con dos coordenadas `x` y `y`.
    - Atributos:
@@ -33,7 +33,7 @@ Se creo un sistema que modela elementos geométricos básicos, como puntos, lín
 
 Se creo un sistema simple para la toma de pedidos en un restaurante. Este sistema permite crear un menú con bebidas, aperitivos y platos principales, tambíen permite calcular el total de un pedido y si en el pedido hay más de tres artículos se le aplica un descuento del 10% al monto total del pedido.
 
-### Desarrollo
+## Desarrollo
 
 1. **Clase `MenuItem`**: Representa un ítem del menú en el restaurante.
    - Atributos:
@@ -73,3 +73,43 @@ Se creo un sistema simple para la toma de pedidos en un restaurante. Este sistem
    - Métodos:
      - `__init__(menu_item: MenuItem)`: Constructor de la clase.
      - `check_order()`: Calcula el total del pedido, con un posible descuento si el pedido tiene más de 3 ítems.
+
+## UML
+```mermaid
+classDiagram
+    class MenuItem {
+        +str name
+        +float price
+        +str size
+        +__init__(name: str, price: float, size: str)
+        +__str__() str
+    }
+
+    class Beverage {
+        +__init__(name: str, price: float, size: str)
+    }
+
+    class Appetizer {
+        +__init__(name: str, price: float, portion_size: str)
+    }
+
+    class MainCourse {
+        +__init__(name: str, price: float, size: str)
+    }
+
+    class Order {
+        +MenuItem menu_item
+        +float subtotal
+        +int index
+        +int amount
+        +str desicion
+        +int counter
+        +__init__(menu_item: MenuItem)
+        +check_order() str
+    }
+
+    MenuItem <|-- Beverage
+    MenuItem <|-- Appetizer
+    MenuItem <|-- MainCourse
+    Order *-- MenuItem : contains
+```
